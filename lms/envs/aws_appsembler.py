@@ -131,5 +131,5 @@ except ImportError:
     pass
 
 # edx-figures additions
-if FEATURES.get('ENABLE_EDX_FIGURES'):
-    from edx_figures.settings import EDX_FIGURES
+if FEATURES.get('ENABLE_FIGURES'):
+    from figures.settings import FIGURES
