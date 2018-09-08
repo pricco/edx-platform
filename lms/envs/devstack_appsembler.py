@@ -129,3 +129,8 @@ if FEATURES.get('ENABLE_FIGURES'):
 
 # use configured course mode defaults as for aws, not standard devstack's
 COURSE_MODE_DEFAULTS.update(ENV_TOKENS.get('COURSE_MODE_DEFAULTS', COURSE_MODE_DEFAULTS))
+
+# To help working with DRF based endpoints easier in development mode
+REST_FRAMEWORK['DEFAULT_RENDERER_CLASSES'] += (
+    'rest_framework.renderers.BrowsableAPIRenderer',
+)
