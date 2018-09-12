@@ -124,8 +124,8 @@ except ImportError:
 FEATURES['ENABLE_COURSE_DISCOVERY'] = ENV_TOKENS['FEATURES'].get('ENABLE_COURSE_DISCOVERY', FEATURES['ENABLE_COURSE_DISCOVERY'])
 
 # edx-figures additions
-if FEATURES.get('ENABLE_EDX_FIGURES'):
-    from edx_figures.settings import EDX_FIGURES
+if FEATURES.get('ENABLE_FIGURES'):
+    from figures.settings import FIGURES
 
 # use configured course mode defaults as for aws, not standard devstack's
 COURSE_MODE_DEFAULTS.update(ENV_TOKENS.get('COURSE_MODE_DEFAULTS', COURSE_MODE_DEFAULTS))
