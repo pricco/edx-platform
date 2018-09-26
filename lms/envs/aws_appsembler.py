@@ -118,6 +118,8 @@ if 'LMS_AUTHENTICATION_BACKENDS' in APPSEMBLER_FEATURES.keys():
     #default behavior is to replace the existing backends with those in APPSEMBLER_FEATURES
     AUTHENTICATION_BACKENDS = tuple(APPSEMBLER_FEATURES['LMS_AUTHENTICATION_BACKENDS'])
 
+EXCLUSIVE_SSO_LOGISTRATION_URL_MAP = ENV_TOKENS.get('EXCLUSIVE_SSO_LOGISTRATION_URL_MAP', {})
+
 #attempt to import model from our custom fork of edx-organizations
 # if it works, then also add the middleware
 try:
@@ -129,5 +131,5 @@ except ImportError:
     pass
 
 # edx-figures additions
-if FEATURES.get('ENABLE_EDX_FIGURES'):
-    from edx_figures.settings import EDX_FIGURES
+if FEATURES.get('ENABLE_FIGURES'):
+    from figures.settings import FIGURES

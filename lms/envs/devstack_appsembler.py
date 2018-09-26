@@ -108,6 +108,8 @@ if 'LMS_AUTHENTICATION_BACKENDS' in APPSEMBLER_FEATURES.keys():
     #default behavior is to replace the existing backends with those in APPSEMBLER_FEATURES
     AUTHENTICATION_BACKENDS = tuple(APPSEMBLER_FEATURES['LMS_AUTHENTICATION_BACKENDS'])
 
+EXCLUSIVE_SSO_LOGISTRATION_URL_MAP = ENV_TOKENS.get('EXCLUSIVE_SSO_LOGISTRATION_URL_MAP', {})
+
 #attempt to import model from our custom fork of edx-organizations
 # if it works, then also add the middleware
 try:
@@ -122,5 +124,8 @@ except ImportError:
 FEATURES['ENABLE_COURSE_DISCOVERY'] = ENV_TOKENS['FEATURES'].get('ENABLE_COURSE_DISCOVERY', FEATURES['ENABLE_COURSE_DISCOVERY'])
 
 # edx-figures additions
-if FEATURES.get('ENABLE_EDX_FIGURES'):
-    from edx_figures.settings import EDX_FIGURES
+if FEATURES.get('ENABLE_FIGURES'):
+    from figures.settings import FIGURES
+
+# use configured course mode defaults as for aws, not standard devstack's
+COURSE_MODE_DEFAULTS.update(ENV_TOKENS.get('COURSE_MODE_DEFAULTS', COURSE_MODE_DEFAULTS))
