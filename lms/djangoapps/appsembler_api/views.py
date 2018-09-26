@@ -282,7 +282,7 @@ class UpdateUserAccount(APIView):
         """
         data = request.data
 
-        if data['user_lookup'].strip() == "":
+        if data.get('user_lookup', '').strip() == "":
             errors = {"lookup_error": "No user lookup has been provided"}
             return Response(errors, status=400)
 
