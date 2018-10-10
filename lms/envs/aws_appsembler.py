@@ -133,4 +133,3 @@ except ImportError:
 # Enable Figures if it is included
 if 'figures' in INSTALLED_APPS:
     import figures.settings
-
