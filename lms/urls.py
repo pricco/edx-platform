@@ -92,6 +92,7 @@ urlpatterns = [
 
     # Enrollment API RESTful endpoints
     url(r'^api/enrollment/v1/', include('enrollment.urls')),
+    url(r'^appsembler_api/v0/', include('appsembler_api.urls')),
 
     # Entitlement API RESTful endpoints
     url(r'^api/entitlements/', include('entitlements.api.urls', namespace='entitlements_api')),
@@ -1083,3 +1084,10 @@ if settings.FEATURES.get('ENABLE_API_DOCS'):
     ]
 
 urlpatterns.extend(plugin_urls.get_patterns(plugin_constants.ProjectType.LMS))
+
+# allow inclusion of urls from arbitrary packages
+# as specified in ENV config.
+if 'appsembler' in settings.INSTALLED_APPS:
+    urlpatterns += (
+        url('', include('appsembler.urls')),
+    )

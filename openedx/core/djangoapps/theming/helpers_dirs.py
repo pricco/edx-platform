@@ -5,6 +5,8 @@ as the discovery happens during the initial setup of Django settings.
 import os
 from path import Path
 
+from openedx.core.djangoapps.theming import helpers
+
 
 def get_theme_base_dirs_from_settings(theme_dirs=None):
     """
@@ -143,6 +145,30 @@ class Theme(object):
         return Path(self.themes_base_dir) / self.theme_dir_name / get_project_root_name_from_settings(self.project_root)
 
     @property
+    def customer_specific_path(self):
+        """
+        Get absolute path of the directory that contains current theme's templates, static assets etc.
+
+        Returns:
+            Path: absolute path to current theme's contents
+        """
+        root_name = helpers.get_project_root_name()
+        return Path(self.themes_base_dir) / self.theme_dir_name / 'customer_specific' / root_name
+
+
+
+    @property
+    def customer_specific_template_path(self):
+        """
+        Get absolute path of current theme's template directory.
+
+        Returns:
+            Path: absolute path to current theme's template directory
+        """
+        root_name = helpers.get_project_root_name()
+        return Path(self.theme_dir_name) / 'customer_specific' / root_name / 'templates'
+
+    @property
     def template_path(self):
         """
         Get absolute path of current theme's template directory.
@@ -160,6 +186,9 @@ class Theme(object):
         Returns:
             list: list of all template directories for current theme.
         """
-        return [
+        dirs = [
             self.path / 'templates',
         ]
+        if self.customer_specific_path.exists():
+            dirs.insert(0, self.customer_specific_path / 'templates')
+        return dirs
