@@ -5,8 +5,6 @@ as the discovery happens during the initial setup of Django settings.
 import os
 from path import Path
 
-from openedx.core.djangoapps.theming import helpers
-
 
 def get_theme_base_dirs_from_settings(theme_dirs=None):
     """
@@ -152,6 +150,7 @@ class Theme(object):
         Returns:
             Path: absolute path to current theme's contents
         """
+        from openedx.core.djangoapps.theming import helpers
         root_name = helpers.get_project_root_name()
         return Path(self.themes_base_dir) / self.theme_dir_name / 'customer_specific' / root_name
 
@@ -165,6 +164,7 @@ class Theme(object):
         Returns:
             Path: absolute path to current theme's template directory
         """
+        from openedx.core.djangoapps.theming import helpers
         root_name = helpers.get_project_root_name()
         return Path(self.theme_dir_name) / 'customer_specific' / root_name / 'templates'
 

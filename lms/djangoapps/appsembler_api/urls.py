@@ -1,10 +1,9 @@
-from django.conf.urls import patterns, url
+from django.conf.urls import url
 
 from appsembler_api import views
 
 
-urlpatterns = patterns(
-    '',
+urlpatterns = [
     # user API
     url(r'^accounts/user_without_password', views.CreateUserAccountWithoutPasswordView.as_view(), name="create_user_account_without_password_api"),
     url(r'^accounts/create', views.CreateUserAccountView.as_view(), name="create_user_account_api"),
@@ -26,4 +25,4 @@ urlpatterns = patterns(
     # enrollment analytics API
     url(r'^analytics/accounts/batch', views.GetBatchUserDataView.as_view(), name="get_batch_user_data"),
     url(r'^analytics/enrollment/batch', views.GetBatchEnrollmentDataView.as_view(), name="get_batch_enrollment_data"),
-)
+]
