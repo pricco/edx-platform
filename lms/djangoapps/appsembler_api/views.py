@@ -27,7 +27,7 @@ from openedx.core.djangoapps.user_api.accounts.api import check_account_exists
 from openedx.core.lib.api.authentication import (
     OAuth2AuthenticationAllowInactiveUser,
 )
-from openedx.core.lib.api.paginators import NamespacedPageNumberPagination
+from edx_rest_framework_extensions.paginators import NamespacedPageNumberPagination
 from openedx.core.lib.api.permissions import (
     IsStaffOrOwner, ApiKeyHeaderPermissionIsAuthenticated
 )
@@ -52,7 +52,7 @@ from shoppingcart.models import (
 from shoppingcart.views import get_reg_code_validity
 
 from opaque_keys.edx.keys import CourseKey
-from certificates.models import GeneratedCertificate
+from lms.djangoapps.certificates.models import GeneratedCertificate
 
 from openedx.core.lib.api.view_utils import view_auth_classes, DeveloperErrorViewMixin
 from .forms import CourseListGetAndSearchForm

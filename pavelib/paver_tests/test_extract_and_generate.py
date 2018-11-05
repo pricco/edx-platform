@@ -12,7 +12,6 @@ from datetime import datetime, timedelta
 from unittest import TestCase
 
 from i18n import config, dummy, extract, generate
-from mock import patch
 from polib import pofile
 from pytz import UTC
 

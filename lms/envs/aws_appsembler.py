@@ -123,7 +123,7 @@ EXCLUSIVE_SSO_LOGISTRATION_URL_MAP = ENV_TOKENS.get('EXCLUSIVE_SSO_LOGISTRATION_
 #attempt to import model from our custom fork of edx-organizations
 # if it works, then also add the middleware
 try:
-    from organizations.models import UserOrganizationMapping
+    from organizations.middleware import OrganizationMiddleware
     MIDDLEWARE_CLASSES += (
         'organizations.middleware.OrganizationMiddleware',
     )
